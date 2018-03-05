@@ -1,0 +1,40 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2  http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+    <id>all</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <fileSets>
+         <fileSet>
+             <directory>${project.basedir}/script</directory>
+             <outputDirectory>/${buildFinalName}</outputDirectory>
+             <!--<fileMode>755</fileMode>-->
+             <includes>
+                 <include>run_docker.sh</include>
+             </includes>
+         </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/conf</directory>
+            <outputDirectory>/${buildFinalName}/conf</outputDirectory>
+            <includes>
+                <include>common.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>/${buildFinalName}</outputDirectory>
+            <includes>
+                <include>${buildFinalName}.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/conf</directory>
+            <outputDirectory>/${buildFinalName}/countFile</outputDirectory>
+            <excludes>
+                <exclude>*.properties</exclude>
+            </excludes>
+        </fileSet>
+    </fileSets>
+
+</assembly>
